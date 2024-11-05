@@ -11,12 +11,10 @@ import PrimaryButton from '../components/PrimaryButton'
 
     function resetInputHandler() {
         setEnteredNumber('');
-        console.log("fdgfd")
       }    
 
     function confirmInputHandler() {
         const chosenNumber = parseInt(enteredNumber);
-        console.log("fdgfd")
         onPickNumber(chosenNumber);
     }
 
