@@ -49,7 +49,7 @@ export default function GameScreen({ userNumber, onResetGame }) {
         if (guess === userNumber) {
             Alert.alert(
                 "Congratulations!",
-                `Your phone needed ${tour} rounds to guess the number.`,
+                `Your phone needed ${tour} rounds to guess the number ${userNumber}.`,
                 [
                     { text: "OK" },
                     { text: "Play Again", onPress: onResetGame },
@@ -70,7 +70,7 @@ export default function GameScreen({ userNumber, onResetGame }) {
                     <PrimaryButton onPress={onHigher}>+</PrimaryButton>
                     <PrimaryButton onPress={onLower}>-</PrimaryButton>
                 </View> 
-                <Text>{tour}</Text>
+                
                 <FlatList 
                     data={guesses}
                     keyExtractor={(item, index) => index.toString()} 
