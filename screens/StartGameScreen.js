@@ -10,13 +10,13 @@ export default function StartGameScreen({ onPickNumber }) {
     }
 
     function resetInputHandler() {
-        setEnteredNumber('');
+        setEnteredNumber('')
     }
 
     function confirmInputHandler() {
-        const chosenNumber = parseInt(enteredNumber);
+        const chosenNumber = parseInt(enteredNumber)
         if (!isNaN(chosenNumber)) {
-            onPickNumber(chosenNumber);
+            onPickNumber(chosenNumber)
         }
     }
 
@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
         flex: 1,
         marginHorizontal: 5,
     },
-});
+})

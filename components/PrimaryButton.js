@@ -14,7 +14,7 @@ export default function PrimaryButton({ children, onPress }) {
                 <Text style={styles.buttonText}>{children}</Text>
             </Pressable>
         </View>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
     pressed: {
         opacity: 0.75,
     },
-});
+})

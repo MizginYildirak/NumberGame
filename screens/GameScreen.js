@@ -1,49 +1,49 @@
-import { Text, View, StyleSheet, Alert, FlatList, SafeAreaView } from 'react-native';
-import { useState } from 'react';
-import PrimaryButton from '../components/PrimaryButton';
+import { Text, View, StyleSheet, Alert, FlatList, SafeAreaView } from 'react-native'
+import { useState } from 'react'
+import PrimaryButton from '../components/PrimaryButton'
 
 function generateRandomBetween(min, max, exclude) {
-    const randomNumber = Math.floor(Math.random() * (max - min)) + min;
+    const randomNumber = Math.floor(Math.random() * (max - min)) + min
 
     if (randomNumber === exclude) {
-        return generateRandomBetween(min, max, exclude);
+        return generateRandomBetween(min, max, exclude)
     }
-    return randomNumber;
+    return randomNumber
 }
 
 export default function GameScreen({ userNumber, onResetGame }) {
-    const initialGuess = generateRandomBetween(1, 100, userNumber);
-    const [currentGuess, setCurrentGuess] = useState(initialGuess);
-    const [minBoundary, setMinBoundary] = useState(1);
-    const [maxBoundary, setMaxBoundary] = useState(99);
-    const [guesses, setGuesses] = useState([]);
-    const [tour, setTour] = useState(0);
+    const initialGuess = generateRandomBetween(1, 100, userNumber)
+    const [currentGuess, setCurrentGuess] = useState(initialGuess)
+    const [minBoundary, setMinBoundary] = useState(1)
+    const [maxBoundary, setMaxBoundary] = useState(99)
+    const [guesses, setGuesses] = useState([])
+    const [tour, setTour] = useState(0)
 
     const onLower = () => {
         if (currentGuess < userNumber) {
-            Alert.alert("Nope!", "Your number is higher!", [{ text: "Okay" }]);
-            return;
+            Alert.alert("Nope!", "Your number is higher!", [{ text: "Okay" }])
+            return
         }
-        setMaxBoundary(currentGuess);
-        const nextGuess = generateRandomBetween(minBoundary, currentGuess, currentGuess);
-        setCurrentGuess(nextGuess);
-        checkGuess(nextGuess);
-        setGuesses((prevGuesses) => [nextGuess, ...prevGuesses]);
-        setTour((prev) => prev + 1);
-    };
+        setMaxBoundary(currentGuess)
+        const nextGuess = generateRandomBetween(minBoundary, currentGuess, currentGuess)
+        setCurrentGuess(nextGuess)
+        checkGuess(nextGuess)
+        setGuesses((prevGuesses) => [nextGuess, ...prevGuesses])
+        setTour((prev) => prev + 1)
+    }
 
     const onHigher = () => {
         if (currentGuess > userNumber) {
-            Alert.alert("Nope!", "Your number is lower!", [{ text: "Okay" }]);
-            return;
+            Alert.alert("Nope!", "Your number is lower!", [{ text: "Okay" }])
+            return
         }
         setMinBoundary(currentGuess + 1);
-        const nextGuess = generateRandomBetween(currentGuess + 1, maxBoundary, currentGuess);
-        setCurrentGuess(nextGuess);
-        checkGuess(nextGuess);
-        setGuesses((prevGuesses) => [nextGuess, ...prevGuesses]);
-        setTour((prev) => prev + 1);
-    };
+        const nextGuess = generateRandomBetween(currentGuess + 1, maxBoundary, currentGuess)
+        setCurrentGuess(nextGuess)
+        checkGuess(nextGuess)
+        setGuesses((prevGuesses) => [nextGuess, ...prevGuesses])
+        setTour((prev) => prev + 1)
+    }
 
     const checkGuess = (guess) => {
         if (guess === userNumber) {
@@ -55,10 +55,9 @@ export default function GameScreen({ userNumber, onResetGame }) {
                     { text: "Play Again", onPress: onResetGame },
                     { text: "Cancel", style: "cancel" }
                 ]
-            );
+            )
         }
-    };
-    
+    }
 
     return (
         <SafeAreaView style={styles.screen}>
@@ -84,7 +83,7 @@ export default function GameScreen({ userNumber, onResetGame }) {
                 />
             </View>
         </SafeAreaView>
-    );
+    )
 }
 const styles = StyleSheet.create({
     screen: {
@@ -93,12 +92,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         marginTop: 50,
-        backgroundColor: '#f0f0f5', // Light background color
+        backgroundColor: '#f0f0f5', 
     },
     title: {
         padding: 12,
         borderWidth: 1,
-        borderColor: '#333', // Darker border for emphasis
+        borderColor: '#333',
         width: "80%",
         textAlign: "center",
         fontSize: 20,
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
         fontSize: 32,
         color: '#333',
         borderRadius: 8,
-        backgroundColor: '#e0e0e0', // Light background for readability
+        backgroundColor: '#e0e0e0',
         marginBottom: 20,
     },
     contentContainer: {
@@ -154,8 +153,8 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         alignItems: 'center',
         backgroundColor: '#fafafa',
-        width: "100%",  // Increased width to 95%
-        alignSelf: 'center',  // Centered item within the parent container
+        width: "100%",  
+        alignSelf: 'center',
     },
     flatListText: {
         color: '#333',
@@ -167,4 +166,4 @@ const styles = StyleSheet.create({
         color: '#666',
         marginVertical: 10,
     },
-});
+})
