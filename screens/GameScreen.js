@@ -64,13 +64,12 @@ export default function GameScreen({ userNumber, onResetGame }) {
             <Text style={styles.title}>Opponent's Guess</Text>
             <Text style={styles.guess}>{currentGuess}</Text> 
             <View style={styles.contentContainer}>
-                <Text>Your number: {userNumber}</Text>
-                <Text>Higher or lower?</Text>
+                <Text style={styles.question}>Higher or lower?</Text>
                 <View style={styles.buttonsContainer}>
                     <PrimaryButton onPress={onHigher}>+</PrimaryButton>
                     <PrimaryButton onPress={onLower}>-</PrimaryButton>
                 </View> 
-                
+
                 <FlatList 
                     data={guesses}
                     keyExtractor={(item, index) => index.toString()} 
@@ -166,4 +165,12 @@ const styles = StyleSheet.create({
         color: '#666',
         marginVertical: 10,
     },
+    question: {
+        width: "80%",
+        textAlign: "center",
+        fontSize: 16,
+        fontWeight: '800',
+        color: 'red',
+        marginTop: 10
+    }
 })
